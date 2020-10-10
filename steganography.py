@@ -5,13 +5,6 @@ from PIL import Image
 def make_even_image(image):
     """取得一个 PIL 图像并且更改所有值为偶数，使最低有效位为 0
     """
-    # image.getdata 方法返回的是一个可迭代对象，其中包含图片中所有像素点的数据
-    # 每个像素点表示一个颜色，每种颜色有红绿蓝三种颜色按比例构成
-    # R Red 红色；G Green 绿色；B Blue 蓝色；A Alpha 透明度
-    # 更改所有像素点中四个数值为偶数（魔法般的移位）
-    # 这里使用位运算符 >> 和 << 来实现数据处理
-    # 奇数减一变偶数，偶数不变，这样处理后，所有数值的最低位变为零
-    # pixels 为更改后的像素点数据列表
     pixels = [(r >> 1 << 1, g >> 1 << 1, b >> 1 << 1, a >> 1 << 1) 
             for r, g, b, a in image.getdata()]  
     # 调用 Image 的 new 方法创建一个相同大小的图片副本
