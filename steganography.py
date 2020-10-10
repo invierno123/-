@@ -26,10 +26,7 @@ def encode_data_in_image(image, data):
     # 将需要隐藏的字符串转换成二进制字符串
     # 每个字符转换成二进制之后，对应一个或多个字节码
     # 每个字节码为一个十进制数值，将其转换为 8 为二进制字符串后相加
-    binary = ''.join(map(int_to_binary_str, bytearray(data, 'utf-8'))) 
-    # 每个像素点的 RGBA 数据的最低位都已经空出来，分别可以存储一个二进制数据
-    # 所以图片可以存储的最大二进制数据的位数是像素点数量的 4 倍
-    # 如果需要隐藏的字符串转换成二进制字符串之后的长度超过这个数，抛出异常
+    binary = ''.join(map(int_to_binary_str, bytearray(data, 'utf-8')))
     if len(binary) > len(even_image.getdata()) * 4:  
         raise Exception("Error: Can't encode more than " + 
                 len(even_image.getdata()) * 4 + " bits in this image. ")
